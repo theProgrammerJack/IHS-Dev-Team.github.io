@@ -1,13 +1,6 @@
 window.onload = main;
 
-var action = '';
-document.addEventListener('keydown', e => {
-    action = e.key;
-});
-
-document.addEventListener('keyup', () => {
-    action = '';
-});
+var keys = new MoveAndShoot2d();
 
 function main() {
     const block = new Player(100, 300);

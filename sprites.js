@@ -16,16 +16,14 @@ function Player(x, y) {
     };
     this.update = function () {
         this.dy += 10;
-        if (action == 'd') {
+        if (keys.right && !keys.left) {
             this.dx = this.speed;
-        }
-        else if (action == 'a') {
+        } else if (keys.left && !keys.right) {
             this.dx = -this.speed;
-        }
-        else if (action == '') {
+        } else {
             this.dx = 0;
         }
-        else if (action == ' ' && this.loaded) {
+        if (keys.shoot && this.loaded) {
             this.loaded = false;
             Graphics.after(1, () => this.loaded = true);
             const p = new Projectile(this.x + 10, this.y);
@@ -34,7 +32,7 @@ function Player(x, y) {
     };
     this.collision = function (o) {
         if (o.type == "Ground") {
-            if (action == 'w') {
+            if (keys.up) {
                 this.dy = -this.speed * 4;
             }
             if (this.dy > 0) {
